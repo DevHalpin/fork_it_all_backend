@@ -152,11 +152,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
-<<<<<<< Updated upstream
   foreman
-=======
-  foreman (~> 0.82.0)
->>>>>>> Stashed changes
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.4)
