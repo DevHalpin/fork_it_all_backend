@@ -18,6 +18,7 @@ gem 'puma', '~> 3.11'
 gem 'foreman'
 gem 'rest-client'
 
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
