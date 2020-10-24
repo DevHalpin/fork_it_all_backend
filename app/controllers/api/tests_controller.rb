@@ -76,7 +76,7 @@ class Api::TestsController < ApplicationController
     #   meal.measures << meal_details[k] if (k.include?("Measure")) && meal_details[k]
     # end
     message = Array.new
-    message.push(meal_details['strIngredient2'],meal_details['strIngredient1'], meal_details['strIngredient3'], meal_details['strMeal'],meal_details['mealId'])
+    message.push(meal_details['strIngredient2'],meal_details['strIngredient1'], meal_details['strIngredient3'], meal_details['strMeal'],meal_details['idMeal'])
 
     render :json => {
       message: message
