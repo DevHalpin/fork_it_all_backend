@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_213258) do
+ActiveRecord::Schema.define(version: 2020_10_24_215951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_213258) do
   end
 
   create_table "twists", force: :cascade do |t|
-    t.integer "recipe_id"
+    t.string "recipe_id"
     t.integer "user_id"
     t.string "tags"
     t.string "slug"
@@ -85,5 +85,6 @@ ActiveRecord::Schema.define(version: 2020_10_24_213258) do
   add_foreign_key "followers", "users", column: "users_id"
   add_foreign_key "ingredient_measures", "ingredients", column: "ingredients_id"
   add_foreign_key "ingredient_measures", "recipes", column: "recipes_id"
+  add_foreign_key "twists", "recipes"
   add_foreign_key "twists", "users"
 end
