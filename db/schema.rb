@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_205616) do
+ActiveRecord::Schema.define(version: 2020_10_24_210427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2020_10_24_205616) do
     t.datetime "updated_at", null: false
     t.index ["twists_id"], name: "index_favorites_on_twists_id"
     t.index ["users_id"], name: "index_favorites_on_users_id"
+  end
+
+  create_table "followers", force: :cascade do |t|
+    t.string "following_user_id"
+    t.string "integer"
+    t.bigint "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_followers_on_users_id"
   end
 
   create_table "twists", force: :cascade do |t|
@@ -46,5 +55,6 @@ ActiveRecord::Schema.define(version: 2020_10_24_205616) do
 
   add_foreign_key "favorites", "twists", column: "twists_id"
   add_foreign_key "favorites", "users", column: "users_id"
+  add_foreign_key "followers", "users", column: "users_id"
   add_foreign_key "twists", "users"
 end
