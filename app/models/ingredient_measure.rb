@@ -1,0 +1,2 @@
+class IngredientMeasure < ApplicationRecord
+end
