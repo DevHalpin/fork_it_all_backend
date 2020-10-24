@@ -1,0 +1,2 @@
+class Twist < ApplicationRecord
+end

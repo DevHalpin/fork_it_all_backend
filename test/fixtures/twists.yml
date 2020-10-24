@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recipe_id: 1
+  user_id: 1
+  tags: MyString
+  slug: MyString
+  is_private: false
+  sort_order: 1
+  content: MyText
+
+two:
+  recipe_id: 1
+  user_id: 1
+  tags: MyString
+  slug: MyString
+  is_private: false
+  sort_order: 1
+  content: MyText
