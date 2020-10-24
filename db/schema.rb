@@ -10,10 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_203503) do
+ActiveRecord::Schema.define(version: 2020_10_24_213258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "users_id"
+    t.bigint "twists_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["twists_id"], name: "index_favorites_on_twists_id"
+    t.index ["users_id"], name: "index_favorites_on_users_id"
+  end
+
+  create_table "followers", force: :cascade do |t|
+    t.string "following_user_id"
+    t.string "integer"
+    t.bigint "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_followers_on_users_id"
+  end
+
+  create_table "ingredient_measures", force: :cascade do |t|
+    t.bigint "ingredients_id"
+    t.string "measure"
+    t.string "recipes_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredients_id"], name: "index_ingredient_measures_on_ingredients_id"
+    t.index ["recipes_id"], name: "index_ingredient_measures_on_recipes_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "recipes", id: :string, force: :cascade do |t|
+    t.string "name"
+    t.string "region"
+    t.text "instructions"
+    t.string "meal_image"
+    t.string "meal_type"
+    t.string "video_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "twists", force: :cascade do |t|
     t.integer "recipe_id"
@@ -35,5 +80,10 @@ ActiveRecord::Schema.define(version: 2020_10_24_203503) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "favorites", "twists", column: "twists_id"
+  add_foreign_key "favorites", "users", column: "users_id"
+  add_foreign_key "followers", "users", column: "users_id"
+  add_foreign_key "ingredient_measures", "ingredients", column: "ingredients_id"
+  add_foreign_key "ingredient_measures", "recipes", column: "recipes_id"
   add_foreign_key "twists", "users"
 end
