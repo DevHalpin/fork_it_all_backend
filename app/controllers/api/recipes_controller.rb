@@ -89,7 +89,7 @@ class Api::RecipesController < ApplicationController
   end
 
   def index
-    recipe = get_recipe('Fish pie')
+    recipe = get_recipe('Spicy')
 
     render :json => {
       message: recipe.to_json
