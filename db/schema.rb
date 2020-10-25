@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_215951) do
+ActiveRecord::Schema.define(version: 2020_10_25_032451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,46 @@ ActiveRecord::Schema.define(version: 2020_10_24_215951) do
     t.string "video_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ingredient1"
+    t.string "ingredient2"
+    t.string "ingredient3"
+    t.string "ingredient4"
+    t.string "ingredient5"
+    t.string "ingredient6"
+    t.string "ingredient7"
+    t.string "ingredient8"
+    t.string "ingredient9"
+    t.string "ingredient10"
+    t.string "ingredient11"
+    t.string "ingredient12"
+    t.string "ingredient13"
+    t.string "ingredient14"
+    t.string "ingredient15"
+    t.string "ingredient16"
+    t.string "ingredient17"
+    t.string "ingredient18"
+    t.string "ingredient19"
+    t.string "ingredient20"
+    t.string "measure1"
+    t.string "measure2"
+    t.string "measure3"
+    t.string "measure4"
+    t.string "measure5"
+    t.string "measure6"
+    t.string "measure7"
+    t.string "measure8"
+    t.string "measure9"
+    t.string "measure10"
+    t.string "measure11"
+    t.string "measure12"
+    t.string "measure13"
+    t.string "measure14"
+    t.string "measure15"
+    t.string "measure16"
+    t.string "measure17"
+    t.string "measure18"
+    t.string "measure19"
+    t.string "measure20"
   end
 
   create_table "twists", force: :cascade do |t|
