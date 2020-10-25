@@ -52,7 +52,7 @@ class Api::RecipesController < ApplicationController
   end
 
   def index
-    recipe = get_recipe('Shepard')
+    recipe = get_recipe('Three Fish Pie')
 
     render :json => {
       message: recipe.to_json

@@ -34,4 +34,8 @@ Recipe.create! name: "Spicy Arrabiata Penne", region: "Italian", instructions: "
 
 Twist.create! recipe_id: 1, user_id: 1, tags: "ingredient replacement", slug: "dsdsad72dyw", is_private: false, sort_order: 1, content: "suggest replacing olive oil with canola oil"  
 
+Twist.create! recipe_id: 1, user_id: 1, tags: "ingredient addition", slug: "siaodhafh72", is_private: false, sort_order: 2, content: "suggest adding curry powder"
+
+# Twist.create! recipe_id: 52882, user_id: 1, tags: "ingredient substitution", slug: "dsyf2nfhwf", is_private: false, sort_order: 1, content: "suggest replacing salmon with rowe"
+
 puts "DONE!"
