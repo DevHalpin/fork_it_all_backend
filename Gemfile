@@ -17,6 +17,7 @@ gem 'puma', '~> 3.11'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'foreman'
 gem 'rest-client'
+gem 'faker'
 
 
 # Use ActiveStorage variant
