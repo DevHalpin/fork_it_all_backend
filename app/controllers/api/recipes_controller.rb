@@ -84,12 +84,12 @@ class Api::RecipesController < ApplicationController
         'Nothing found'
       end
     else
-      check
+      check.first
     end
   end
 
   def index
-    recipe = get_recipe('Fish pie')
+    recipe = get_recipe('Potato')
 
     render :json => {
       message: recipe.to_json
