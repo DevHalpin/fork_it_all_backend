@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_215951) do
   create_table "ingredient_measures", force: :cascade do |t|
     t.bigint "ingredients_id"
     t.string "measure"
-    t.string "recipes_id"
+    t.bigint "recipes_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ingredients_id"], name: "index_ingredient_measures_on_ingredients_id"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_215951) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "recipes", id: :string, force: :cascade do |t|
+  create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.string "region"
     t.text "instructions"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_215951) do
   end
 
   create_table "twists", force: :cascade do |t|
-    t.string "recipe_id"
+    t.integer "recipe_id"
     t.integer "user_id"
     t.string "tags"
     t.string "slug"
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 2020_10_24_215951) do
   add_foreign_key "favorites", "users", column: "users_id"
   add_foreign_key "followers", "users", column: "users_id"
   add_foreign_key "ingredient_measures", "ingredients", column: "ingredients_id"
-  add_foreign_key "ingredient_measures", "recipes", column: "recipes_id"
   add_foreign_key "twists", "recipes"
   add_foreign_key "twists", "users"
 end
