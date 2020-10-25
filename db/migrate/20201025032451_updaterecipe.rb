@@ -1,0 +1,44 @@
+class Updaterecipe < ActiveRecord::Migration[5.2]
+  def change
+    add_column :recipes, :ingredient1, :string
+    add_column :recipes, :ingredient2, :string
+    add_column :recipes, :ingredient3, :string
+    add_column :recipes, :ingredient4, :string
+    add_column :recipes, :ingredient5, :string
+    add_column :recipes, :ingredient6, :string
+    add_column :recipes, :ingredient7, :string
+    add_column :recipes, :ingredient8, :string
+    add_column :recipes, :ingredient9, :string
+    add_column :recipes, :ingredient10, :string
+    add_column :recipes, :ingredient11, :string
+    add_column :recipes, :ingredient12, :string
+    add_column :recipes, :ingredient13, :string
+    add_column :recipes, :ingredient14, :string
+    add_column :recipes, :ingredient15, :string
+    add_column :recipes, :ingredient16, :string
+    add_column :recipes, :ingredient17, :string
+    add_column :recipes, :ingredient18, :string
+    add_column :recipes, :ingredient19, :string
+    add_column :recipes, :ingredient20, :string
+    add_column :recipes, :measure1, :string
+    add_column :recipes, :measure2, :string
+    add_column :recipes, :measure3, :string
+    add_column :recipes, :measure4, :string
+    add_column :recipes, :measure5, :string
+    add_column :recipes, :measure6, :string
+    add_column :recipes, :measure7, :string
+    add_column :recipes, :measure8, :string
+    add_column :recipes, :measure9, :string
+    add_column :recipes, :measure10, :string
+    add_column :recipes, :measure11, :string
+    add_column :recipes, :measure12, :string
+    add_column :recipes, :measure13, :string
+    add_column :recipes, :measure14, :string
+    add_column :recipes, :measure15, :string
+    add_column :recipes, :measure16, :string
+    add_column :recipes, :measure17, :string
+    add_column :recipes, :measure18, :string
+    add_column :recipes, :measure19, :string
+    add_column :recipes, :measure20, :string
+  end
+end

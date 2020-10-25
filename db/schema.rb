@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_215951) do
+ActiveRecord::Schema.define(version: 2020_10_25_032451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,12 +50,14 @@ ActiveRecord::Schema.define(version: 2020_10_24_215951) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.string "region"
-    t.text "instructions", null: false
-    t.string "meal_image", null: false
+    t.text "instructions"
+    t.string "meal_image"
     t.string "meal_type"
     t.string "video_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "ingredient1"
     t.string "ingredient2"
     t.string "ingredient3"
@@ -96,8 +98,6 @@ ActiveRecord::Schema.define(version: 2020_10_24_215951) do
     t.string "measure18"
     t.string "measure19"
     t.string "measure20"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "twists", force: :cascade do |t|
