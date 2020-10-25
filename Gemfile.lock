@@ -52,6 +52,8 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.9.0)
+    faker (2.14.0)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     foreman (0.87.2)
     globalid (0.4.2)
@@ -152,6 +154,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
+  faker
   foreman
   listen (>= 3.0.5, < 3.2)
   pg
