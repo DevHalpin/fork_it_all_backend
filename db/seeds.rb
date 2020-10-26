@@ -27,7 +27,9 @@ end
   email = Faker::Internet.email
   profile_picture = Faker::Fillmurray.image(grayscale: false, width: 200, height: 300)
   username = Faker::Internet.user_name(separators: %w(. _ ))
-  User.create! email: email, profile_picture: profile_picture, handle: username
+  bio = Faker::Lorem.question(word_count: 400, supplemental: false, random_words_to_add: 0)
+  name = Faker::Name.name
+  User.create! email: email, profile_picture: profile_picture, handle: username, name: name, bio: bio
 end
 
 ## RECIPE
