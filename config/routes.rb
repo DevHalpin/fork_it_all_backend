@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     scope '/api' do
       resources :users
       resources :twists
+      resources :recipes
       get '/data', to: 'recipes#index'
     end
     # get 'twists/index'
