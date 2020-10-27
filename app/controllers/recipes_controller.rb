@@ -1,4 +1,4 @@
-class Api::RecipesController < ApplicationController
+class RecipesController < ApplicationController
   require 'rest-client'
   require 'json'
 

@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
 
-  namespace :api do # /api/data
+  
+    scope '/api' do
+      resources :users
+      resources :twists
+      get '/data', to: 'recipes#index'
+    end
+    # get 'twists/index'
+    # get 'twists/create'
+    # get 'twists/update'
+    # get 'twists/destroy'
 
-    get '/users', to: 'users#index'
-    get '/data', to: 'recipes#index'
+    # get '/twists', to: 'twists#index'
 
-  end
 
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do
     !request.xhr? && request.format.html?
