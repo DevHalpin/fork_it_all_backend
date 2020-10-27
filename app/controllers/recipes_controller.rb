@@ -79,27 +79,33 @@ class RecipesController < ApplicationController
           end
         end
 
-        meal_details
+        Recipe.where(Recipe.arel_table[:name].matches("%#{word}%")).first
       else
         'Nothing found'
       end
     else
-      Recipe.where(Recipe.arel_table[:name].matches("%#{word}%")).first
+      check.first
     end
   end
 
   def index
     search = params[:search]
-    recipe = get_recipe(search)
-
+    random = params[:random]
+    if search
+      recipe = get_recipe(search)
+    elsif random
+      recipe = Recipe.get_random
+    end
+    
     render :json => {
-      message: recipe.to_json
+      recipe: recipe
     }
   end
 
   def show
     recipe = Recipe.find params[:id]
-    render json: recipe.to_json
+    random = Twist.get_random
+    render json: {recipe:recipe, random:random}
   end
 
 end
