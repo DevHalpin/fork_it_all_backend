@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :twists
       resources :recipes
       resources :sessions
+      # delete :logout, to: "sessions#logout"
+      # get :logged_in, to: "sessions#logged_in"
       get '/data', to: 'recipes#index'
     end
     # get 'twists/index'
