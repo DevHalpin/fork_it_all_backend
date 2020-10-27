@@ -11,6 +11,9 @@ class UsersController < ApplicationController
 
   def create
     user = User.create(user_param)
+    session[:user_id] = user.id
+    #redirect after login
+    redirect_to '/'
     render json: user
   end
 
