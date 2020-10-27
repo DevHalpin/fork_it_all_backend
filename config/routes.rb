@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users
       resources :twists
       resources :recipes
+      resources :sessions
       get '/data', to: 'recipes#index'
     end
     # get 'twists/index'

@@ -6,15 +6,15 @@ class SessionsController < ApplicationController
 
   def create
     # Does an existing user put in the correct password?
-    if user = User.authenticate_with_credentials(params[:email], params[:password])
+    if user = User.authenticate_with_credentials(params[:email])
       # We save the user information in a browser cookie
       # user remains logged in as they navigate page to page
       session[:user_id] = user.id
-      redirect_to :root
+      redirect_to "/"
 
     else
     # Returns a user to login form if they don't authenticate.
-      redirect_to [:new, :session]
+      redirect_to "/login"
     end
 
   end
