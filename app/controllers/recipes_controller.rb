@@ -84,12 +84,13 @@ class RecipesController < ApplicationController
         'Nothing found'
       end
     else
-      check.first
+      Recipe.where(Recipe.arel_table[:name].matches("%#{word}%")).first
     end
   end
 
   def index
-    recipe = get_recipe('Potato')
+    search = params[:search]
+    recipe = get_recipe(search)
 
     render :json => {
       message: recipe.to_json
