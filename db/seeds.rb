@@ -32,7 +32,7 @@ end
   username = Faker::Internet.user_name(separators: %w(. _ ))
   bio = Faker::Lorem.question(word_count: 400, supplemental: false, random_words_to_add: 0)
   name = Faker::Name.name
-  User.create! email: email, profile_picture: profile_picture, handle: username, name: name, bio: bio
+  User.create! email: email, profile_picture: profile_picture, handle: username, name: name, bio: bio, password: "1234", password_confirmation: "1234"
 end
 
 ## RECIPE
@@ -135,7 +135,7 @@ end
 
 ## TWISTS
 100.times do
-  recipe_id = 1
+  recipe_id = rand(1..100)
   user_id = rand(1..100)
   tags = Faker::Food.dish
   slug = Faker::Internet.slug(glue: '_')
