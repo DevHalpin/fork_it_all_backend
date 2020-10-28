@@ -5,8 +5,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find params[:id]
-    render json: user.to_json
+    # user = User.find params[:id]
+    twists = User.getTwists(params[:id])
+    render json: twists.to_json
   end
 
   def create
