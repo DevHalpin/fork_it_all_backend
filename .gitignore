@@ -29,3 +29,6 @@
 .env.development
 /config/database.yml
 Gemfile.lock
+Gemfile
+
+vendor
