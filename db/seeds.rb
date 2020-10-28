@@ -135,7 +135,7 @@ end
 
 ## TWISTS
 100.times do
-  recipe_id = 1
+  recipe_id = rand(1..100)
   user_id = rand(1..100)
   tags = Faker::Food.dish
   slug = Faker::Internet.slug(glue: '_')
