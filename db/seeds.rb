@@ -5,6 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'faker'
+I18n.reload!
+
 
 puts "Seeding Data ..."
 
@@ -33,11 +36,106 @@ end
 end
 
 ## RECIPE
-Recipe.create! name: "Spicy Arrabiata Penne", region: "Italian", instructions: "Bring a large pot of water to a boil. Add kosher salt to the boiling water, then add the pasta. Cook according to the package instructions, about 9 minutes. In a large skillet over medium-high heat, add the olive oil and heat until the oil starts to shimmer. Add the garlic and cook, stirring, until fragrant, 1 to 2 minutes. Add the chopped tomatoes, red chile flakes, Italian seasoning and salt and pepper to taste. Bring to a boil and cook for 5 minutes. Remove from the heat and add the chopped basil. Drain the pasta and add it to the sauce. Garnish with Parmigiano-Reggiano flakes and more basil and serve warm.", meal_image: "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg", meal_type: "Pasta,Curry", video_url: "https://www.youtube.com/watch?v=1IszT_guI08"
+
+100.times do
+  name = Faker::Food.dish 
+  region = Faker::Coffee.origin 
+  instructions = Faker::Food.description 
+  meal_image = 'http://lorempixel.com/640/480/food/' 
+  meal_type = Faker::Coffee.notes 
+  video_url = "https://mityurl.com/y/TEDT/r-5-25"
+  ingredient1 = Faker::Food.ingredient
+  ingredient2 = Faker::Food.ingredient
+  ingredient3 = Faker::Food.ingredient
+  ingredient4 = Faker::Food.ingredient
+  ingredient5 = Faker::Food.ingredient
+  ingredient6 = Faker::Food.ingredient
+  ingredient7 = Faker::Food.ingredient
+  ingredient8 = Faker::Food.ingredient
+  ingredient9 = Faker::Food.ingredient
+  ingredient10 = Faker::Food.ingredient
+  ingredient11 = Faker::Food.ingredient
+  ingredient12 = Faker::Food.ingredient
+  ingredient13 = Faker::Food.ingredient
+  ingredient14 = Faker::Food.ingredient
+  ingredient15 = Faker::Food.ingredient
+  ingredient16 = Faker::Food.ingredient
+  ingredient17 = Faker::Food.ingredient
+  ingredient18 = Faker::Food.ingredient
+  ingredient19 = Faker::Food.ingredient
+  ingredient20 = Faker::Food.ingredient
+  measure1 = Faker::Food.measurement
+  measure2 = Faker::Food.metric_measurement
+  measure3 = Faker::Food.measurement
+  measure4 = Faker::Food.metric_measurement
+  measure5 = Faker::Food.measurement
+  measure6 = Faker::Food.metric_measurement
+  measure7 = Faker::Food.measurement
+  measure8 = Faker::Food.metric_measurement
+  measure9 = Faker::Food.measurement
+  measure10 = Faker::Food.metric_measurement
+  measure11 = Faker::Food.measurement
+  measure12 = Faker::Food.metric_measurement
+  measure13 = Faker::Food.measurement
+  measure14 = Faker::Food.metric_measurement
+  measure15 = Faker::Food.measurement
+  measure16 = Faker::Food.metric_measurement
+  measure17 = Faker::Food.measurement
+  measure18 = Faker::Food.metric_measurement
+  measure19 = Faker::Food.measurement
+  measure20 = Faker::Food.metric_measurement
+
+  Recipe.create! name: name,
+    region: region,
+    instructions: instructions,
+    meal_image: meal_image,
+    meal_type: meal_type,
+    video_url: video_url,
+    ingredient1: ingredient1,
+    ingredient2: ingredient2,
+    ingredient3: ingredient3,
+    ingredient4: ingredient4,
+    ingredient5: ingredient5,
+    ingredient6: ingredient6,
+    ingredient7: ingredient7,
+    ingredient8: ingredient8,
+    ingredient9: ingredient9,
+    ingredient10: ingredient10,
+    ingredient11: ingredient11,
+    ingredient12: ingredient12,
+    ingredient13: ingredient13,
+    ingredient14: ingredient14,
+    ingredient15: ingredient15,
+    ingredient16: ingredient16,
+    ingredient17: ingredient17,
+    ingredient18: ingredient18,
+    ingredient19: ingredient19,
+    ingredient20: ingredient20,
+    measure1: measure1,
+    measure2: measure2,
+    measure3: measure3,
+    measure4: measure4,
+    measure5: measure5,
+    measure6: measure6,
+    measure7: measure7,
+    measure8: measure8,
+    measure9: measure9,
+    measure10: measure10,
+    measure11: measure11,
+    measure12: measure12,
+    measure13: measure13,
+    measure14: measure14,
+    measure15: measure15,
+    measure16: measure16,
+    measure17: measure17,
+    measure18: measure18,
+    measure19: measure19,
+    measure20: measure20
+end
 
 ## TWISTS
 100.times do
-  recipe_id = 1
+  recipe_id = rand(1..100)
   user_id = rand(1..100)
   tags = Faker::Food.dish
   slug = Faker::Internet.slug(glue: '_')
