@@ -32,7 +32,7 @@ end
   username = Faker::Internet.user_name(separators: %w(. _ ))
   bio = Faker::Lorem.question(word_count: 400, supplemental: false, random_words_to_add: 0)
   name = Faker::Name.name
-  User.create! email: email, profile_picture: profile_picture, handle: username, name: name, bio: bio
+  User.create! email: email, profile_picture: profile_picture, handle: username, name: name, bio: bio, password: "1234", password_confirmation: "1234"
 end
 
 ## RECIPE

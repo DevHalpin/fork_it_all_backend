@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_225658) do
+ActiveRecord::Schema.define(version: 2020_10_28_192055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 2020_10_26_225658) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.text "bio"
+    t.string "password_digest"
   end
 
   add_foreign_key "favorites", "twists", column: "twists_id"
