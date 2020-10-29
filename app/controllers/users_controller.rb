@@ -7,8 +7,10 @@ class UsersController < ApplicationController
   def show
     #define our search queries
     recipe = Recipe.find params[:recipes]
-    
+    user = params[:id]
+    if user
     user = User.find params[:id]
+    end
     # recipe = Recipe.find params[:recipes]
     # twists = Twist.find params[:id]
     
