@@ -12,7 +12,6 @@ class RecipesController < ApplicationController
       if (!meal['meals'].nil?)
         # how do I parse the response into meaningful json data?
         meal_details = meal["meals"].first
-        counter = 0
         Recipe.create!(
           :name => meal_details['strMeal'],
           :region => meal_details['strArea'],
