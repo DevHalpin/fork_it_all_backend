@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def show
     user = User.find params[:id]
+    recipe = Recipe.find params[:id]
+    twists = Twist.find params[:id]
     twists = User.getTwists(params[:id])
     render json: {twists: twists, user: user}
   end
