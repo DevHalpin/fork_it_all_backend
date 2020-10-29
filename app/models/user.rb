@@ -31,7 +31,8 @@ class User < ApplicationRecord
    end
 
    def self.getThreeLatest
-
+    twists = Twist.last(3)
+    twists
    end
 
   
