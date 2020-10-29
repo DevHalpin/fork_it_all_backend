@@ -12,7 +12,6 @@ class RecipesController < ApplicationController
       if (!meal['meals'].nil?)
         # how do I parse the response into meaningful json data?
         meal_details = meal["meals"].first
-        counter = 0
         Recipe.create!(
           :name => meal_details['strMeal'],
           :region => meal_details['strArea'],
@@ -106,8 +105,9 @@ class RecipesController < ApplicationController
 
   def show
     recipe = Recipe.find params[:id]
-    random = Twist.get_random
-    render json: {recipe:recipe, random:random}
+    puts "in recipe controller", recipe
+    # random = Twist.get_random
+    render json: {recipe:recipe}
   end
 
 end

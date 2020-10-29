@@ -1,4 +1,16 @@
 class TwistsController < ApplicationController
+  include CurrentUserConcern
+
+  def favorite
+    @twist = Twist.find(params[:id])
+    type = params[:type]
+    if type == "favorite"
+      @current_user.favorite_twists << @twist
+    elsif type == "unfavorite"
+      @current_user.favorites_twist.delete(@twist)
+    end
+  end
+
   def index
     twists = Twist.order("created_at DESC")
     render json: twists.to_json

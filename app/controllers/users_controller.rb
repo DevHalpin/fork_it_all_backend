@@ -5,9 +5,22 @@ class UsersController < ApplicationController
   end
 
   def show
+    #define our search queries
+    recipe = Recipe.find params[:recipes]
+    user = params[:id]
+    if user
     user = User.find params[:id]
-    twists = User.getTwists(params[:id])
-    render json: {twists: twists, user: user}
+    end
+    # recipe = Recipe.find params[:recipes]
+    # twists = Twist.find params[:id]
+    
+    # user = twists.id
+    puts "user is now", user.id
+    if recipe
+      puts "Recipe ID: ", recipe.id
+    twists = User.getTwists(user.id, recipe.id).to_a
+    end
+    render json: {twists: twists, user: user, recipe: recipe}
   end
 
   def create
