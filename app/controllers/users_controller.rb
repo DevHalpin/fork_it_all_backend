@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     recipe = Recipe.find params[:recipes]
     puts "Recipe ID: ", recipe.id
     twists = Twist.find params[:id]
-    twists = User.getTwists(params[:id])
-    render json: {twists: twists, user: user}
+    twists = User.getTwists(params[:id], recipe.id)
+    render json: {twists: twists, user: user, recipe: recipe}
   end
 
   def create

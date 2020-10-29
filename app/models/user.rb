@@ -19,8 +19,20 @@ class User < ApplicationRecord
     nil
   end
 
-  def self.getTwists(id)
-    twists = Twist.joins('join recipes on recipes.id = twists.recipe_id').select('*').where(user_id: id)
+  def self.getTwists(id, recipe_id)
+    
+    # attempts to pull a twist from our random user id for the respective recipe
+    twists = Twist.joins('join recipes on recipes.id = twists.recipe_id').select('*').where(recipe_id: recipe_id, user_id: id)
+
+    #if this pull is unsucessful we need to pull all records with recipe id and select a random one that exists 
+   if twists.blank?
+    puts "No twists were found for user #{id} for recipe id #{recipe_id}"
+    twists = Twist.where(recipe_id: recipe_id).order("random()").limit(1)
+    puts twists.inspect
+   end
+
+
+
     return twists
   end
 end

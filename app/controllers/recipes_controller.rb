@@ -104,8 +104,8 @@ class RecipesController < ApplicationController
   def show
     recipe = Recipe.find params[:id]
     puts "in recipe controller", recipe
-    random = Twist.get_random
-    render json: {recipe:recipe, random:random}
+    # random = Twist.get_random
+    render json: {recipe:recipe}
   end
 
 end
