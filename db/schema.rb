@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_192055) do
+ActiveRecord::Schema.define(version: 2020_10_29_032159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(version: 2020_10_28_192055) do
   enable_extension "xml2"
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "users_id"
-    t.bigint "twists_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["twists_id"], name: "index_favorites_on_twists_id"
-    t.index ["users_id"], name: "index_favorites_on_users_id"
+    t.bigint "twist_id"
+    t.bigint "user_id"
+    t.index ["twist_id"], name: "index_favorites_on_twist_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "followers", force: :cascade do |t|
@@ -144,8 +144,6 @@ ActiveRecord::Schema.define(version: 2020_10_28_192055) do
     t.string "password_digest"
   end
 
-  add_foreign_key "favorites", "twists", column: "twists_id"
-  add_foreign_key "favorites", "users", column: "users_id"
   add_foreign_key "followers", "users", column: "users_id"
   add_foreign_key "ingredient_measures", "ingredients", column: "ingredients_id"
   add_foreign_key "twists", "recipes"
