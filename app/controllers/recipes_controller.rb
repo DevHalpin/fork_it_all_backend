@@ -90,21 +90,36 @@ class RecipesController < ApplicationController
   def index
     search = params[:search]
     random = params[:random]
+    three = params[:three]
     if search
       recipe = get_recipe(search)
-    elsif random
+    end
+    if random
       recipe = Recipe.get_random
     end
+    if three
+      recipe = Recipe.get_three
+    end
+
+    # if three
+    #   recipe = Recipe.get_three
+
     
     render :json => {
       recipe: recipe
     }
   end
 
-  def show
+  def show  
+    three = params[:three]
     recipe = Recipe.find params[:id]
     puts "in recipe controller", recipe
     # random = Twist.get_random
+    puts "hitting show route"
+    if three
+      #http://localhost:3001/api/recipes?three=1
+      recipe = Recipe.get_three
+    end
     render json: {recipe:recipe}
   end
 
