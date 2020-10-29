@@ -95,6 +95,8 @@ class RecipesController < ApplicationController
       recipe = get_recipe(search)
     elsif random
       recipe = Recipe.get_random
+    else
+      recipe = Recipe.all
     end
     
     render :json => {
