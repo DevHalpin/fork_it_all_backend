@@ -17,7 +17,13 @@ class TwistsController < ApplicationController
   end
 
   def index
-    twists = Twist.order("created_at DESC")
+    random = params[:random]
+    if random
+      twists = Twist.getTwist
+    elsif
+      twists = Twist.order("created_at DESC")
+    end
+    puts twists.to_json
     render json: twists.to_json
   end
 
