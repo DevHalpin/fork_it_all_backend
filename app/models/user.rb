@@ -22,7 +22,7 @@ class User < ApplicationRecord
   def self.getTwists(id, recipe_id)
     
     # attempts to pull a twist from our random user id for the respective recipe
-    twists = Twist.joins('join recipes on recipes.id = twists.recipe_id').select('*').where(recipe_id: recipe_id, user_id: id)
+    twists = Recipe.joins(:twists).select('*').where(id: recipe_id, twists: {user_id: id})
 
     #if this pull is unsuccessful we need to pull all records with recipe id and select a random one that exists 
    if twists.blank?

@@ -114,13 +114,14 @@ class RecipesController < ApplicationController
 
   def show  
     three = params[:three]
-    recipe = Recipe.find params[:id]
-    puts "in recipe controller", recipe
-    # random = Twist.get_random
-    puts "hitting show route"
-    if three
-      #http://localhost:3001/api/recipes?three=1
-      recipe = Recipe.get_three
+    random = params[:random]
+      if three
+        recipe = Recipe.get_three
+      elsif random
+        recipe = Recipe.joins(:twists).joins("join users on twists.user_id = users.id").where(recipes: {id: params[:id]}).select("recipes.meal_image, recipes.name, recipes.instructions, twists.content, twists.id, users.handle").sample
+
+      else
+        recipe = Recipe.find params[:id]
     end
     render json: {recipe:recipe}
   end
