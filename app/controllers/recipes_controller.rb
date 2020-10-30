@@ -115,13 +115,13 @@ class RecipesController < ApplicationController
   def show  
     three = params[:three]
     random = params[:random]
-      if three
-        recipe = Recipe.get_three
-      elsif random
-        recipe = Recipe.joins(:twists).joins("join users on twists.user_id = users.id").where(twists: {is_private: false}, recipes: {id: params[:id]}).select("recipes.meal_image, recipes.name, recipes.instructions, twists.content, twists.id, users.handle").sample
+    if three
+      recipe = Recipe.get_three
+    elsif random
+      recipe = Recipe.joins(:twists).joins("join users on twists.user_id = users.id").where(twists: {is_private: false}, recipes: {id: params[:id]}).select("twists.content, twists.id, users.handle").sample
 
-      else
-        recipe = Recipe.find params[:id]
+    else
+      recipe = Recipe.find params[:id]
     end
     render json: {recipe:recipe}
   end
