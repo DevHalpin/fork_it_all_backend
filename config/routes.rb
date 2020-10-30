@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :recipes
     resources :sessions
     resources :registrations
+    get :myTwists, to: "users#myTwists"
+    get :faveTwists, to: "twists#faveTwists"
     delete :logout, to: "sessions#logout"
     get :logged_in, to: "sessions#logged_in"
   end    
