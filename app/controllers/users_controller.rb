@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  include CurrentUserConcern
+
+  def myTwists
+    @myTwists = Recipe.joins(:twists).where(twists: {user_id: @current_user}).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
+    render json: @myTwists
+  end
+
   def index
     users = User.order("created_at DESC")
     render json: users.to_json
@@ -11,10 +18,8 @@ class UsersController < ApplicationController
     if user
     user = User.find params[:id]
     end
-    # recipe = Recipe.find params[:recipes]
-    # twists = Twist.find params[:id]
+  
     
-    # user = twists.id
     puts "user is now", user.id
     if recipe
       puts "Recipe ID: ", recipe.id

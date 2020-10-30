@@ -11,6 +11,11 @@ class TwistsController < ApplicationController
     end
   end
 
+  def faveTwists
+    @faveTwists = Recipe.joins(:twists).joins("join favorites on favorites.twist_id = twists.id").where(favorites: {user_id: @current_user}).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
+    render json: @faveTwists.to_json
+  end
+
   def index
     twists = Twist.order("created_at DESC")
     render json: twists.to_json
