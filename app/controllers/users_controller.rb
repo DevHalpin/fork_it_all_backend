@@ -12,20 +12,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    #define our search queries
-    recipe = Recipe.find params[:recipes]
-    user = params[:id]
-    if user
     user = User.find params[:id]
-    end
-  
-    
-    puts "user is now", user.id
-    if recipe
-      puts "Recipe ID: ", recipe.id
-    twists = User.getTwists(user.id, recipe.id).to_a
-    end
-    render json: {twists: twists, user: user, recipe: recipe}
+    render json: user.to_json
   end
 
   def create
