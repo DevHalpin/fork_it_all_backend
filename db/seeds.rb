@@ -24,17 +24,19 @@ end
 
 # Let's do this ...
 
-
+puts "Creating Users ..."
 ## USERS
 100.times do
-  email = Faker::Internet.email
+  email = Faker::Internet.unique.email
   profile_picture = Faker::Fillmurray.image(grayscale: false, width: 200, height: 300)
-  username = Faker::Internet.user_name(separators: %w(. _ ))
-  bio = Faker::Lorem.question(word_count: 400, supplemental: false, random_words_to_add: 0)
+  username = Faker::Internet.unique.user_name(separators: %w(. _ ))
+  bio = Faker::Lorem.question(word_count: 100, supplemental: false, random_words_to_add: 0)
   name = Faker::Name.name
   User.create! email: email, profile_picture: profile_picture, handle: username, name: name, bio: bio, password: "1234", password_confirmation: "1234"
 end
 
+puts "Users Complete!"
+puts "Creating Recipes ..."
 ## RECIPE
 
 100.times do
@@ -132,6 +134,9 @@ end
     measure19: measure19,
     measure20: measure20
 end
+
+puts "Recipes Complete!"
+puts "Creating Twists ..."
 
 ## TWISTS
 100.times do
