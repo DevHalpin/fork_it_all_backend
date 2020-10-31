@@ -3,14 +3,12 @@ class RecipesController < ApplicationController
   require 'json'
 
   def get_recipe(word)
-    check = Recipe.where(Recipe.arel_table[:name].matches("%#{word}%"))
-    ## what is my endpoint?
-    if ( check.empty? )
+    @check = Recipe.where(Recipe.arel_table[:name].matches("%#{word}%"))
+    if ( @check.empty? )
       response = RestClient.get("https://www.themealdb.com/api/json/v1/1/search.php?s=#{word}")
       meal = JSON.parse(response)
 
       if (!meal['meals'].nil?)
-        # how do I parse the response into meaningful json data?
         meal_details = meal["meals"].first
         Recipe.create!(
           :name => meal_details['strMeal'],
@@ -65,15 +63,9 @@ class RecipesController < ApplicationController
         # if key has word ingredient and is not null and is not empty string
           if (key.include?("Ingredient") && !meal_details[key].empty?)
             if (Ingredient.where(name: meal_details[key]).empty?)
-              # if exists
-              # check measures table for measures
-              # if not, push to measures table
               Ingredient.create!(
                 :name => meal_details[key]
               )
-        #  if not, push to db and push to measures
-            else
-              puts 'Here'
             end
           end
         end
@@ -83,7 +75,7 @@ class RecipesController < ApplicationController
         'Nothing found'
       end
     else
-      check.first
+      @check.first
     end
   end
 
@@ -92,22 +84,16 @@ class RecipesController < ApplicationController
     random = params[:random]
     three = params[:three]
     if search
-      recipe = get_recipe(search)
+      @recipe = get_recipe(search)
     elsif random
-      recipe = Recipe.get_random
+      @recipe = Recipe.get_random
     elsif three
-      recipe = Recipe.get_three
+      @recipe = Recipe.get_three
     else
-      recipe = Recipe.all
+      @recipe = Recipe.all
     end
-
-    # if three
-    #   recipe = Recipe.get_three
-
     
-    render :json => {
-      recipe: recipe
-    }
+    render :json => @recipe.to_json
   end
 
   def show  
@@ -115,15 +101,15 @@ class RecipesController < ApplicationController
     random = params[:random]
     twist = params[:twist]
     if three
-      recipe = Recipe.get_three
+      @recipe = Recipe.get_three
     elsif random
-      recipe = Recipe.joins(:twists).joins("join users on twists.user_id = users.id").where(twists: {is_private: false}, recipes: {id: params[:id]}).select("twists.content, twists.id, twists.slug, users.handle").sample
+      @recipe = Recipe.joins(:twists).joins("join users on twists.user_id = users.id").where(twists: {is_private: false}, recipes: {id: params[:id]}).select("twists.content, twists.id, twists.slug, users.handle").sample
     elsif twist
-      recipe = Recipe.joins(:twists).joins("join users on twists.user_id = users.id").where(twists: {is_private: false, id: params[:twist]}, recipes: {id: params[:id]}).select("twists.content, twists.id, twists.slug, users.handle").first
+      @recipe = Recipe.joins(:twists).joins("join users on twists.user_id = users.id").where(twists: {is_private: false, id: params[:twist]}, recipes: {id: params[:id]}).select("twists.content, twists.id, twists.slug, users.handle").first
     else
-      recipe = Recipe.find params[:id]
+      @recipe = Recipe.find params[:id]
     end
-    render json: {recipe:recipe}
+    render json: @recipe.to_json
   end
 
 end
