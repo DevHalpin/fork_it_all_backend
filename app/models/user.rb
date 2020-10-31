@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 3 }
   validates :password_confirmation, presence: true
   validates :name, presence: true
-  validates :handle, presence: true
+  validates :handle, presence: true, uniqueness: {case_sensitive: false}
 
   def self.authenticate_with_credentials(email, password)
     stripped = email.strip
