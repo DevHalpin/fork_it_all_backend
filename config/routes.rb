@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get :faveTwists, to: "twists#faveTwists"
     delete :logout, to: "sessions#logout"
     get :logged_in, to: "sessions#logged_in"
+    get :slug, to: "twists#slug"
   end    
 
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do
