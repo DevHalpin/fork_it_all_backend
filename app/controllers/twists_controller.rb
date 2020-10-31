@@ -16,36 +16,41 @@ class TwistsController < ApplicationController
     render json: @faveTwists.to_json
   end
 
+  def slug
+    slug = params[:slug]
+    @twistFromSlug = Recipe.joins(:twists).where(twists: { slug: slug }).select("recipes.id as recipe_id, twists.id as twist_id").first
+    render json: @twistFromSlug.to_json
+  end
+
   def index
     random = params[:random]
     if random
-      twists = Twist.getTwist
+      @twists = Twist.getTwist
     elsif
-      twists = Twist.order("created_at DESC")
+      @twists = Twist.order("created_at DESC")
     end
-    puts twists.to_json
-    render json: twists.to_json
+    render json: @twists.to_json
   end
 
   def show
-    twist = Twist.find params[:id]
-    render json: twist.to_json
+    @twist = Twist.find params[:id]
+    render json: @twist.to_json
   end
 
   def create
-    twist = Twist.create(twist_param)
-    render json: twist
+    @twist = Twist.create(twist_param)
+    render json: @twist
   end
 
   def update
-    twist = Twist.find(params[:id])
-    twist.update_attributes(twist_param)
-    render json: twist
+    @twist = Twist.find(params[:id])
+    @twist.update_attributes(twist_param)
+    render json: @twist
   end
 
   def destroy
-    twist = Twist.find(params[:id])
-    twist.destroy
+    @twist = Twist.find(params[:id])
+    @twist.destroy
     head :no_content, status: :ok
   end
   

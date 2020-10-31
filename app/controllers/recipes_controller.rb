@@ -93,14 +93,12 @@ class RecipesController < ApplicationController
     three = params[:three]
     if search
       recipe = get_recipe(search)
-    end
-    if random
+    elsif random
       recipe = Recipe.get_random
+    elsif three
+      recipe = Recipe.get_three
     else
       recipe = Recipe.all
-    end
-    if three
-      recipe = Recipe.get_three
     end
 
     # if three
@@ -115,11 +113,13 @@ class RecipesController < ApplicationController
   def show  
     three = params[:three]
     random = params[:random]
+    twist = params[:twist]
     if three
       recipe = Recipe.get_three
     elsif random
-      recipe = Recipe.joins(:twists).joins("join users on twists.user_id = users.id").where(twists: {is_private: false}, recipes: {id: params[:id]}).select("twists.content, twists.id, users.handle").sample
-
+      recipe = Recipe.joins(:twists).joins("join users on twists.user_id = users.id").where(twists: {is_private: false}, recipes: {id: params[:id]}).select("twists.content, twists.id, twists.slug, users.handle").sample
+    elsif twist
+      recipe = Recipe.joins(:twists).joins("join users on twists.user_id = users.id").where(twists: {is_private: false, id: params[:twist]}, recipes: {id: params[:id]}).select("twists.content, twists.id, twists.slug, users.handle").first
     else
       recipe = Recipe.find params[:id]
     end
