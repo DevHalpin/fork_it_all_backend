@@ -18,10 +18,10 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'foreman'
 gem 'rest-client'
 gem 'faker'
-
+gem 'carrierwave', '~> 2.0'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
