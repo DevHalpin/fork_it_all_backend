@@ -62,7 +62,6 @@ class TwistsController < ApplicationController
         :tags,
         :slug,
         :is_private,
-        :sort_order,
         :content
       );
     end

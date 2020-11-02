@@ -11,11 +11,6 @@ I18n.reload!
 
 puts "Seeding Data ..."
 
-# Helper functions
-def open_asset(file_name)
-  File.open(Rails.root.join('db', 'seed_assets', file_name))
-end
-
 # Only run on development (local) instances not on production, etc.
 unless Rails.env.development?
   puts "Development seeds only (for now)!"
@@ -26,7 +21,7 @@ end
 
 puts "Creating Users ..."
 ## USERS
-100.times do
+5.times do
   email = Faker::Internet.unique.email
   profile_picture = Faker::Fillmurray.image(grayscale: false, width: 200, height: 300)
   username = Faker::Internet.unique.user_name(separators: %w(. _ ))
@@ -39,7 +34,7 @@ puts "Users Complete!"
 puts "Creating Recipes ..."
 ## RECIPE
 
-100.times do
+5.times do
   name = Faker::Food.dish 
   region = Faker::Coffee.origin 
   instructions = Faker::Food.description 
@@ -139,15 +134,14 @@ puts "Recipes Complete!"
 puts "Creating Twists ..."
 
 ## TWISTS
-100.times do
-  recipe_id = rand(1..100)
-  user_id = rand(1..100)
+5.times do
+  recipe_id = rand(1..5)
+  user_id = rand(1..5)
   tags = Faker::Food.dish
   slug = Faker::Internet.slug(glue: '_')
   is_private = Faker::Boolean.boolean(true_ratio: 0.4)
-  sort_order = rand(1..100)
   content = Faker::Hacker.say_something_smart
-  Twist.create! recipe_id: recipe_id, user_id: user_id, tags: tags, slug: slug, is_private: is_private, sort_order: sort_order, content: content
+  Twist.create! recipe_id: recipe_id, user_id: user_id, tags: tags, slug: slug, is_private: is_private, content: content
 end
 
 
