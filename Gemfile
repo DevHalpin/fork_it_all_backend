@@ -18,6 +18,7 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'foreman'
 gem 'rest-client'
 gem 'faker'
+gem 'rails_same_site_cookie'
 
 
 # Use ActiveStorage variant
