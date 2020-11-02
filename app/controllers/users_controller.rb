@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   include CurrentUserConcern
 
   def myTwists
-    @myTwists = Recipe.joins(:twists).where(twists: {user_id: @current_user[:id ]}).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
+    puts @current_user
+    @myTwists = Recipe.joins(:twists).where(user_id: @current_user.id).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
     render json: @myTwists
   end
 
