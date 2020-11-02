@@ -10,7 +10,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :handle, presence: true, uniqueness: {case_sensitive: false}
 
-  mount_uploader :profile_picture, ImageUploader
+  mount_base64_uploader :profile_picture, ImageUploader
+  attr_accessor :profile_picture
 
   def self.authenticate_with_credentials(email, password)
     stripped = email.strip

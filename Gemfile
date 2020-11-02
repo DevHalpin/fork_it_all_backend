@@ -19,6 +19,7 @@ gem 'foreman'
 gem 'rest-client'
 gem 'faker'
 gem 'carrierwave', '~> 2.0'
+gem 'carrierwave-base64'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
