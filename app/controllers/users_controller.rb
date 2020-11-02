@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
   def myTwists
     puts @current_user
-    @myTwists = Recipe.joins(:twists).where(user_id: 1).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
+    @myTwists = Recipe.joins("LEFT JOIN twists ON twists.recipe_id = id AND twist.user_id = 1")
+    puts @myTwists.inspect
+    # @myTwists = Recipe.joins(:twists).where(user_id: 1).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
     render json: @myTwists
   end
 
