@@ -7,9 +7,11 @@ class SessionsController < ApplicationController
 
   def logged_in
     if @current_user
+      token = @current_user.find_by(access_token: token)
       render json: {
         logged_in: true,
-        user: @current_user
+        user: @current_user,
+        token: token
       }
     else
       render json: {

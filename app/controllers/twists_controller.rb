@@ -1,7 +1,15 @@
 class TwistsController < ApplicationController
+  include ActionController::HttpAuthentication::Token::ControllerMethods
   include CurrentUserConcern
-
+  
+  def restrict_access
+    authenticate_or_request_with_http_token do |token, options|
+      @current_user = User.find_by(access_token: token)
+    end
+  end
+  
   def favorite
+    before_action :restrict_access
     @twist = Twist.find(params[:id])
     type = params[:type]
     if type == "favorite"
