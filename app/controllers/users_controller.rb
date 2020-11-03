@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   end
   
   def myTwists
-    @myTwists = Recipe.joins(:twists).where(twists: {user_id: @current_user}).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
+    # @myTwists = Recipe.joins("JOIN twists ON twists.recipe_id = recipes.id AND twists.user_id = ?", @user)
+    @myTwists = Recipe.joins(:twists).where(twists: {user_id: @current_user.id}).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
     render json: @myTwists
   end
 

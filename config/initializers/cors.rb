@@ -6,8 +6,15 @@
 # Read more: https://github.com/cyu/rack-cors
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do 
+  # allow do
+  #   origins "https://fork-it-all.netlify.app" 
+  #   resource "*", 
+  #   headers: :any, 
+  #   methods: [:get, :post, :put, :patch, :delete, :options, :head],
+  #   credentials: true
+  # end
   allow do
-    origins "https://fork-it-all.netlify.app" 
+    origins "https://fork-it-all.herokuapp.com" 
     resource "*", 
     headers: :any, 
     methods: [:get, :post, :put, :patch, :delete, :options, :head],
