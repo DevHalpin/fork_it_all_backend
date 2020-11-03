@@ -2,12 +2,8 @@ class UsersController < ApplicationController
   include CurrentUserConcern
 
   def myTwists
-    puts @current_user
-    @myTwists = Recipe.joins("JOIN twists ON twists.recipe_id = recipes.id AND twists.user_id = ?", session[:user_id])
-    puts @myTwists.inspect
-    
-    # Client.where("orders_count = ?", params[:orders])
-    # @myTwists = Recipe.joins(:twists).where(user_id: 1).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
+    # @myTwists = Recipe.joins("JOIN twists ON twists.recipe_id = recipes.id AND twists.user_id = ?", @user)
+    @myTwists = Recipe.joins(:twists).where(twists: {user_id: @current_user.id}).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
     render json: @myTwists
   end
 
