@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_032159) do
+ActiveRecord::Schema.define(version: 2020_11_03_154612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -127,7 +127,6 @@ ActiveRecord::Schema.define(version: 2020_10_29_032159) do
     t.string "tags"
     t.string "slug"
     t.boolean "is_private"
-    t.integer "sort_order"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -142,6 +141,8 @@ ActiveRecord::Schema.define(version: 2020_10_29_032159) do
     t.string "name"
     t.text "bio"
     t.string "password_digest"
+    t.string "access_token", null: false
+    t.index ["access_token"], name: "index_users_on_access_token", unique: true
   end
 
   add_foreign_key "followers", "users", column: "users_id"
