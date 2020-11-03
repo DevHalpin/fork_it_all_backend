@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def myTwists
     puts @current_user
-    @myTwists = Recipe.joins("JOIN twists ON twists.recipe_id = recipes.id AND twists.user_id = 3")
+    @myTwists = Recipe.joins("JOIN twists ON twists.recipe_id = recipes.id AND twists.user_id = ?", session[:user_id])
     puts @myTwists.inspect
     
     # Client.where("orders_count = ?", params[:orders])
