@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
+  include ActionController::HttpAuthentication::Token::ControllerMethods
+  before_action :restrict_access
   include CurrentUserConcern
-
+  
+  
+  def restrict_access
+    authenticate_or_request_with_http_token do |token, options|
+      @current_user = User.find_by(access_token: token)
+    end
+  end
+  
   def myTwists
     @myTwists = Recipe.joins(:twists).where(twists: {user_id: @current_user}).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
     render json: @myTwists
