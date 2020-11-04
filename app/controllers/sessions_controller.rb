@@ -28,11 +28,7 @@ class SessionsController < ApplicationController
     if @user = User.authenticate_with_credentials(params[:email], params[:password])
       # We save the user information in a browser cookie
       # user remains logged in as they navigate page to page
-      if @user.update(access_token: SecureRandom.hex)
-        puts @user.update(access_token: SecureRandom.hex)
-      else
-        puts @user.errors.full_messages
-      end
+      @user.update_attributes(access_token: SecureRandom.hex)
       render json: {
         status: :created,
         logged_in: true,
