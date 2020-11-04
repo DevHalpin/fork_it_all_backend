@@ -7,11 +7,9 @@ class SessionsController < ApplicationController
 
   def logged_in
     if @current_user
-      token = @current_user.find_by(access_token: token)
       render json: {
         logged_in: true,
         user: @current_user,
-        token: token
       }
     else
       render json: {
@@ -21,7 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    reset_session
+    @current_user.update_attributes(access_token: nil)
     render json: { status: 200, logged_out: true }
   end
 
@@ -30,7 +28,11 @@ class SessionsController < ApplicationController
     if @user = User.authenticate_with_credentials(params[:email], params[:password])
       # We save the user information in a browser cookie
       # user remains logged in as they navigate page to page
-      session[:user_id] = @user.id
+      if @user.update(access_token: SecureRandom.hex)
+        puts @user.update(access_token: SecureRandom.hex)
+      else
+        puts @user.errors.full_messages
+      end
       render json: {
         status: :created,
         logged_in: true,
@@ -49,8 +51,6 @@ class SessionsController < ApplicationController
 
 #destroy cookie on logout
   def destroy
-    session[:user_id] = nil
-    render json: {status: 200, logged_out: true}
   end
 
 end

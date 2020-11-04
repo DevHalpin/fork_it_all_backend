@@ -1,5 +1,4 @@
 class TwistsController < ApplicationController
-  include ActionController::HttpAuthentication::Token::ControllerMethods
   include CurrentUserConcern
   
   def restrict_access
@@ -9,7 +8,6 @@ class TwistsController < ApplicationController
   end
   
   def favorite
-    before_action :restrict_access
     @twist = Twist.find(params[:id])
     type = params[:type]
     if type == "favorite"
@@ -20,7 +18,7 @@ class TwistsController < ApplicationController
   end
 
   def faveTwists
-    @faveTwists = Recipe.joins(:twists).joins("join favorites on favorites.twist_id = twists.id").where(favorites: {user_id: session[:user_id]}).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
+    @faveTwists = Recipe.joins(:twists).joins("join favorites on favorites.twist_id = twists.id").where(favorites: {user_id: @current_user.id}).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
     render json: @faveTwists.to_json
   end
 

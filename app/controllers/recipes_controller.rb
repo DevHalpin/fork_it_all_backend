@@ -57,18 +57,6 @@ class RecipesController < ApplicationController
           :measure18 => meal_details['strMeasure18'],
           :measure19 => meal_details['strMeasure19'],
           :measure20 => meal_details['strMeasure20'])
-        
-        # go through each key in meal_details
-        meal_details.keys.each do | key |
-        # if key has word ingredient and is not null and is not empty string
-          if (key.include?("Ingredient") && !meal_details[key].empty?)
-            if (Ingredient.where(name: meal_details[key]).empty?)
-              Ingredient.create!(
-                :name => meal_details[key]
-              )
-            end
-          end
-        end
 
         Recipe.where(Recipe.arel_table[:name].matches("%#{word}%")).first
       else

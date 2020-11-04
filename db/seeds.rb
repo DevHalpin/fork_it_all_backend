@@ -22,13 +22,12 @@ end
 puts "Creating Users ..."
 ## USERS
 5.times do
-  access_token = SecureRandom.hex
   email = Faker::Internet.unique.email
   profile_picture = Faker::Fillmurray.image(grayscale: false, width: 200, height: 300)
   username = Faker::Internet.unique.user_name(separators: %w(. _ ))
   bio = Faker::Lorem.question(word_count: 100, supplemental: false, random_words_to_add: 0)
   name = Faker::Name.name
-  User.create! access_token: access_token, email: email, profile_picture: profile_picture, handle: username, name: name, bio: bio, password: "1234", password_confirmation: "1234"
+  User.create! email: email, profile_picture: profile_picture, handle: username, name: name, bio: bio, password: "1234", password_confirmation: "1234"
 end
 
 puts "Users Complete!"

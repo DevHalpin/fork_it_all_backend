@@ -5,9 +5,7 @@ module CurrentUserConcern extend ActiveSupport::Concern
   end
 
   def set_current_user
-    if session[:user_id]
-      @current_user = User.find(session[:user_id])
-    end
+    @current_user = User.find { |x| !x["access_token"].blank? }
   end
   
 end

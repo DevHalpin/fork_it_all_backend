@@ -5,7 +5,8 @@ class RegistrationsController < ApplicationController
       password: params['password'],
       password_confirmation: params['password'],
       name: params['name'],
-      handle: params['handle']
+      handle: params['handle'],
+      access_token: SecureRandom.hex
     )
 
     if @user

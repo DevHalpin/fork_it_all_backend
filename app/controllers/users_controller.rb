@@ -1,17 +1,8 @@
 class UsersController < ApplicationController
-  include ActionController::HttpAuthentication::Token::ControllerMethods
   include CurrentUserConcern
   
   
-  def restrict_access
-    authenticate_or_request_with_http_token do |token, options|
-      User.exists?(access_token: token)
-    end
-  end
-  
   def myTwists
-    before_action :restrict_access
-    # @myTwists = Recipe.joins("JOIN twists ON twists.recipe_id = recipes.id AND twists.user_id = ?", @user)
     @myTwists = Recipe.joins(:twists).where(twists: {user_id: @current_user.id}).select("recipes.id as recipe_id, recipes.name, recipes.meal_image, twists.id as twist_id, twists.content")
     render json: @myTwists
   end
@@ -27,8 +18,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_param)
-    session[:user_id] = @user.id
+    @user = User.create!(user_param)
+    output = @user.update_attributes(access_token: SecureRandom.hex)
+    puts output
+    # session[:user_id] = @user.id
     #redirect after login
     redirect_to '/'
     render json: @user

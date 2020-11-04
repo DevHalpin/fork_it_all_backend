@@ -5,8 +5,8 @@ class User < ApplicationRecord
   has_many :favorite_twists, through: :favorites, source: :twist
   
   validates :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 3 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 3 }, :if => :password
+  validates :password_confirmation, presence: true, :if => :password_confirmation
   validates :name, presence: true
   validates :handle, presence: true, uniqueness: {case_sensitive: false}
 

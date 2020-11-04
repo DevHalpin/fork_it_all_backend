@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_154612) do
+ActiveRecord::Schema.define(version: 2020_11_04_000953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_154612) do
     t.string "name"
     t.text "bio"
     t.string "password_digest"
-    t.string "access_token", null: false
+    t.string "access_token"
     t.index ["access_token"], name: "index_users_on_access_token", unique: true
   end
 
