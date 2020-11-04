@@ -18,7 +18,6 @@ Have you ever followed a recipe and thought this could do with another pinch of 
   * Ruby on Rails
   * Active Record
   * PSQL
-  * Foreman
   * bcrypt
   * Deployment: Heroku
 
@@ -58,4 +57,4 @@ bundle install
 * Be sure to run the [frontend](https://github.com/kelsi2/fork_it_all_frontend) install as well.
 
 ### Running the server
-* The server must be run from the backend using Foreman. Run bin/rails start to run both front and back end servers.
+Run ```bin/rails s -p 3001``` in a terminal to start back end.
