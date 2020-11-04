@@ -1,4 +1,6 @@
 class RegistrationsController < ApplicationController
+  skip_before_action :restrict_access
+
   def create
     @user = User.create!(
       email: params['email'],
@@ -10,7 +12,6 @@ class RegistrationsController < ApplicationController
     )
 
     if @user
-      session[:user_id] = @user.id
       render json: {
         status: :created,
         user: @user

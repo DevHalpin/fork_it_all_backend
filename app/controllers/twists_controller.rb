@@ -1,11 +1,6 @@
 class TwistsController < ApplicationController
-  include CurrentUserConcern
+  skip_before_action :restrict_access, only: [:slug, :index, :show, :create, :update, :destroy, :twist_param]
   
-  def restrict_access
-    authenticate_or_request_with_http_token do |token, options|
-      @current_user = User.find_by(access_token: token)
-    end
-  end
   
   def favorite
     @twist = Twist.find(params[:id])

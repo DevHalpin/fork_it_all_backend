@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   require 'rest-client'
   require 'json'
+  skip_before_action :restrict_access
 
   def get_recipe(word)
     @check = Recipe.where(Recipe.arel_table[:name].matches("%#{word}%"))

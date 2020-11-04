@@ -1,6 +1,6 @@
 # Add a controller for user session
 class SessionsController < ApplicationController
-  include CurrentUserConcern
+  skip_before_action :restrict_access, only: [:create, :destroy]
 
   def new
   end
