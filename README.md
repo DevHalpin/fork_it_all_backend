@@ -1,24 +1,61 @@
-# README
+# Fork It All
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<b>[This website is live on Heroku!](https://fork-it-all.herokuapp.com/)</b>
 
-Things you may want to cover:
+Have you ever followed a recipe and thought this could do with another pinch of ____? Have you ever found the perfect recipe… almost? Fork It All allows you to create your own twist on recipes. You will be able to see a list of user shared twists to recipes too. Twist cuts out the life stories so you can get straight to business in your kitchen! <br/>
+[Find the backend repository here](https://github.com/kelsi2/fork_it_all_frontend)
 
-* Ruby version
+## Table of Contents
+  * [Tech Stack](#tech-stack)
+  * [User Stories](#user-stories)
+  * [Screenshots](#screenshots)
+  * [Development](#development)
+    * [Dependencies](#dependencies)
+    * [Fork It All Setup](#fork-it-all-setup)
+    * [Running the Server](#running-the-server)
 
-* System dependencies
+## Tech Stack
+  * Ruby on Rails
+  * Active Record
+  * PSQL
+  * Foreman
+  * bcrypt
+  * Deployment: Heroku
 
-* Configuration
+## User Stories
+  * As a user, I want to be able to access clear and concise existing recipes and other users' associated twists on them.
+  * Users should have the ability to see a list of publicly available twists on the home page
+  * As a user I want to be able to create a twist on a recipe
+  * Users should be able to make twists private
+  * Users should have the option to categorize their twists associated with a recipe
+  * Users should have the ability to pin/save/favourite other users' twists
+  * Users who have created their twists should be able to delete only their twists
+  * As a user I want to be able to edit an existing twist I have made
+  * As a user I want to be able to share my twists on existing recipes
+  * As a user I should be able to share a link to a twist I create
 
-* Database creation
+## Screenshots
 
-* Database initialization
+## Development
+### Dependencies
+  * Axios
+  * Bootstrap
+  * Copy-to-clipboard
+  * Create React App
+  * Faker
+  * Node-Sass
+  * React Bootstrap
+  * React Dom
+  * React Router Dom
 
-* How to run the test suite
+### Fork It All Setup
+```
+cd <project-directory>
+git clone https://github.com/DevHalpin/fork_it_all_backend
+cd fork_it_all_backend
+bundle install
+```
+* Be sure to run the [frontend](https://github.com/kelsi2/fork_it_all_frontend) install as well.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Running the server
+* The server must be run from the backend using Foreman. Run bin/rails start to run both front and back end servers.
